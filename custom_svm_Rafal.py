@@ -7,7 +7,7 @@ import scipy.optimize as opt
 
 from sklearn.datasets.samples_generator import make_blobs
 X, y = make_blobs(n_samples=250, centers=2,
-                  random_state=0, cluster_std=0.55)
+                  random_state=0, cluster_std=0.4)
 def obj_func(w):
     return np.power(np.linalg.norm(w[:-1], ord = 2), 2)
 

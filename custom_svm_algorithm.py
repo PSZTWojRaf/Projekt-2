@@ -125,9 +125,11 @@ if dim == 2:
 x = [1,2,3]
 euclidean_norm = np.linalg.norm(x, ord = 2)
 
-# print(euclidean_norm)
+print(euclidean_norm)
 
 w = np.ones(dim+1)
+
+w = [-1 3 5]
 
 # print(w)
 
@@ -137,9 +139,10 @@ def obj_func(w):
 lower_bound = np.ones(2*n)
 upper_bound = np.zeros(2*n) + np.inf
 
-#opt_lin_constr = opt.LinearConstraint([c[:,0]*c[:,2], c[:,1]*c[:,2], -c[:,2]], lower_bound, upper_bound)
-opt_lin_constr = opt.LinearConstraint(np.concatenate((np.transpose(np.matrix(c[:,0]*c[:,2])), np.transpose(np.matrix(c[:,1]*c[:,2])), np.transpose(np.matrix(-c[:,2]))), 1), lower_bound, upper_bound)
+from scipy.optimize import BFGS
+opt_lin_constr = opt.LinearConstraint([c[:,0]*c[:,2], c[:,1]*c[:,2], -c[:,2]], lower_bound, upper_bound)
+#opt_lin_constr = opt.LinearConstraint(np.concatenate((np.transpose(np.matrix(c[:,0]*c[:,2])), np.transpose(np.matrix(c[:,1]*c[:,2])), np.transpose(np.matrix(-c[:,2]))), 1), lower_bound, upper_bound)
 
-res = opt.minimize(obj_func, w, method='trust-constr', constraints=opt_lin_constr, options={'verbose': 1})
+res = opt.minimize(obj_func, w, method='trust-constr', constraints=opt_lin_constr, jac='2-point', hess=BFGS(), options={'verbose': 1})
 
 print(res)
