@@ -9,12 +9,13 @@ import math
 import matplotlib.pyplot as plt
 import os
 
-from sklearn.svm import LinearSVR, SVR
+from sklearn.svm import SVR as skSVR
+from sklearn.svm import LinearSVR
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 # reading data
-wines_data = pd.read_csv('winequality/winequality-red.csv', sep=';')
+wines_data = pd.read_csv('./winequality/winequality-red.csv', sep=';')
 full_set = wines_data.values
 X = full_set[:,:-1]
 y = full_set[:,-1]
@@ -30,8 +31,8 @@ from custom_SVR import SVR
 # params of regressor
 eps = 0.5;
 kern = 'linear';
-# kern = 'poly';
-# kern = 'rbf';
+#kern = 'poly';
+#kern = 'rbf';
 deg = 2
 C = 10
 

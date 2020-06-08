@@ -12,8 +12,8 @@ X = X.transpose()
 
 # params of regressor
 eps = 0.5;
-kern = 'linear';
-# kern = 'poly';
+# kern = 'linear';
+kern = 'poly';
 # kern = 'rbf';
 deg = 5
 C = 10
